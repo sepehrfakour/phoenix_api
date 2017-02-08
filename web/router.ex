@@ -13,6 +13,14 @@ defmodule PhoenixApi.Router do
     plug :accepts, ["json"]
   end
 
+  # API
+  scope "/api", PhoenixApi do
+    pipe_through :api
+
+    resources "/posts", PostController, only: [:index]
+  end
+
+  # Web
   scope "/", PhoenixApi do
     pipe_through :browser # Use the default browser stack
 
