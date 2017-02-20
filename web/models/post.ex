@@ -7,4 +7,10 @@ defmodule PhoenixApi.Post do
 
     timestamps()
   end
+
+  def changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, [:title, :content])
+    |> validate_required([:title, :content])
+  end
 end

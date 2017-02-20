@@ -17,7 +17,7 @@ defmodule PhoenixApi.Router do
   scope "/api", PhoenixApi do
     pipe_through :api
 
-    resources "/posts", PostController, only: [:index]
+    resources "/posts", PostController, only: [:index,:show,:create]
   end
 
   # Web

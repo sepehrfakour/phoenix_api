@@ -12,4 +12,16 @@ defmodule PhoenixApi.PostController do
     post = Repo.get!(Post, id)
     render(conn, "show.json", post: post)
   end
+
+  def create(conn, %{"post" => post_params}) do
+    changeset = Post.changeset(%Post{}, post_params)
+
+    case Repo.insert(changeset) do
+      {:ok, _post} ->
+        conn
+        |> redirect(to: post_path(conn, :index))
+      {:error, changeset} ->
+        render(conn, "new.html", changeset: changeset)
+    end
+  end
 end
